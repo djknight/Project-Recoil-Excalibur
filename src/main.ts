@@ -11,8 +11,6 @@ class Game extends Engine {
   initialize() {
     const player = new Player();
     this.add(player);
-    const turret = new Turret();
-    this.add(turret);
 
     const loader = new Loader([Resources.top, Resources.body]);
 

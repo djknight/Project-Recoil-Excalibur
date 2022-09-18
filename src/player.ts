@@ -1,8 +1,9 @@
 import * as ex from "excalibur";
-import { Actor, Color, Engine, vec } from "excalibur";
+import { Actor, Color, Engine, vec, Vector } from "excalibur";
 import { Resources } from "./resources";
-
+import { Turret } from "./turret";
 export class Player extends Actor {
+  turret: Turret;
   constructor() {
     super({
       pos: vec(150, 150),
@@ -11,32 +12,31 @@ export class Player extends Actor {
     });
   }
 
-  onInitialize() {
-    // only the img
+  onInitialize(engine: Engine) {
+    this.turret = new Turret();
+    engine.add(this.turret);
 
     this.graphics.add(Resources.body.toSprite());
-    this.graphics.add(Resources.top.toSprite());
   }
 
   onPreUpdate(engine: Engine): void {
-    this.rotation = engine.input.pointers.primary.lastWorldPos
-      .sub(this.pos)
-      .toAngle();
-
     this.vel.x = 0;
     this.vel.y = 0;
 
     if (engine.input.keyboard.isHeld(ex.Input.Keys.W)) {
-      this.vel.y = -150;
+      this.vel = Vector.fromAngle(this.rotation).scale(150);
     }
     if (engine.input.keyboard.isHeld(ex.Input.Keys.D)) {
-      this.vel.x = 150;
+      this.rotation += 0.02;
     }
     if (engine.input.keyboard.isHeld(ex.Input.Keys.S)) {
-      this.vel.y = 150;
+      this.vel = Vector.fromAngle(this.rotation).scale(-50);
     }
     if (engine.input.keyboard.isHeld(ex.Input.Keys.A)) {
-      this.vel.x = -150;
+      this.rotation -= 0.02;
     }
+  }
+  onPostUpdate(_engine: ex.Engine, _delta: number): void {
+    this.turret.pos = this.pos;
   }
 }

@@ -7,7 +7,7 @@ export class Turret extends Actor {
     super({
       pos: vec(150, 150),
       width: 100,
-      height: 90,
+      height: 100,
     });
   }
 
