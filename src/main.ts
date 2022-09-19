@@ -3,6 +3,7 @@ import { vector } from "excalibur/build/dist/Util/DrawUtil";
 import { Player } from "./player";
 import { Turret } from "./turret";
 import { Resources } from "./resources";
+import { Shell } from "./projectiles/shell";
 
 class Game extends Engine {
   constructor() {
@@ -12,7 +13,11 @@ class Game extends Engine {
     const player = new Player();
     this.add(player);
 
-    const loader = new Loader([Resources.top, Resources.body]);
+    const loader = new Loader([
+      Resources.top,
+      Resources.body,
+      Resources.shellBlue,
+    ]);
 
     this.start(loader);
   }
