@@ -1,7 +1,10 @@
 import * as ex from "excalibur";
 import { Actor, Color, Engine, vec, Vector } from "excalibur";
+import Config from "./config";
 import { Resources } from "./resources";
 import { Turret } from "./turret";
+import { Shell } from "./projectiles/shell";
+
 export class Player extends Actor {
   turret: Turret;
   constructor() {

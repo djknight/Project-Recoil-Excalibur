@@ -1,5 +1,7 @@
 import * as ex from "excalibur";
 import { Actor, Color, Engine, vec } from "excalibur";
+import Config from "./config";
+import { Shell } from "./projectiles/shell";
 import { Resources } from "./resources";
 
 export class Turret extends Actor {
@@ -19,5 +21,15 @@ export class Turret extends Actor {
     this.rotation = engine.input.pointers.primary.lastWorldPos
       .sub(this.pos)
       .toAngle();
+
+    //mouse click
+    engine.input.pointers.primary.on("down", (evt) => {
+      const shell = new Shell(
+        this.pos.clone(),
+        ex.Vector.fromAngle(this.rotation).scale(Config.shellSpeed)
+      );
+      shell.rotation = this.rotation;
+      engine.add(shell);
+    });
   }
 }
