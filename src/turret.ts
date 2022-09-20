@@ -13,16 +13,9 @@ export class Turret extends Actor {
     });
   }
 
-  onInitialize() {
+  onInitialize(engine: Engine) {
     this.graphics.add(Resources.top.toSprite());
-  }
 
-  onPreUpdate(engine: Engine): void {
-    this.rotation = engine.input.pointers.primary.lastWorldPos
-      .sub(this.pos)
-      .toAngle();
-
-    //mouse click
     engine.input.pointers.primary.on("down", (evt) => {
       const shell = new Shell(
         this.pos.clone(),
@@ -31,5 +24,12 @@ export class Turret extends Actor {
       shell.rotation = this.rotation;
       engine.add(shell);
     });
+  }
+  //mouse click
+  onPreUpdate(engine: Engine): void {
+    this.rotation = engine.input.pointers.primary.lastWorldPos
+
+      .sub(this.pos)
+      .toAngle();
   }
 }

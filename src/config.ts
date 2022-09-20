@@ -7,7 +7,8 @@ const Config = {
   playerSpeed: 500,
   playerTurnSpeed: 20,
   playerFireThrottle: 200,
-  shellSpeed: +300,
+  shellSpeed: +1000,
+  setTimeout: 1000,
 
   // Blue team
   blueBulletVelocity: -300,
