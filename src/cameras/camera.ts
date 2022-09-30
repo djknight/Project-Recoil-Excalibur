@@ -1,11 +1,11 @@
 //radious normal
-game.currentScene.camera.strategy.radiusAroundActor(Actor, radius);
+// game.currentScene.camera.strategy.radiusAroundActor(player, radius);
 
 //camera shake radious to exolotion?
-Camera.shake;
+//Camera.shake;
 
 //zoom with mouse wheel
-Camera.zoom;
+//Camera.zoom;
 
 // press key to unlock camera look around
 // free camera folow mouse?

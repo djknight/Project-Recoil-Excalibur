@@ -20,6 +20,8 @@ export class Player extends Actor {
     engine.add(this.turret);
 
     this.graphics.add(Resources.body.toSprite());
+
+    engine.currentScene.camera.strategy.elasticToActor(this, 0.1, 0.9);
   }
 
   onPreUpdate(engine: Engine): void {
